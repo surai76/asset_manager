@@ -875,7 +875,7 @@ def main():
         st.error(f'인증 설정 오류: {e}')
         st.stop()
 
-    name, auth_status, username = authenticator.login('로그인', 'main')
+    name, auth_status, username = authenticator.login(location='main')
 
     if auth_status is False:
         st.error('아이디 또는 비밀번호가 올바르지 않습니다.')
@@ -942,3 +942,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
