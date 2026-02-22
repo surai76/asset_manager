@@ -2,7 +2,7 @@
 """
 개인 자산관리 - Streamlit 웹 앱
 ─────────────────────────────────────────────────────
-데이터 : GitHub private repo 에서 다운로드
+데이터 : GitHub private repo 에서 다운로드G
 인증   : streamlit-authenticator (bcrypt 해시)
 ─────────────────────────────────────────────────────
 """
@@ -875,7 +875,10 @@ def main():
         st.error(f'인증 설정 오류: {e}')
         st.stop()
 
-    name, auth_status, username = authenticator.login(location='main')
+    authenticator.login(location='main')
+
+    auth_status = st.session_state.get('authentication_status')
+    name        = st.session_state.get('name', '')
 
     if auth_status is False:
         st.error('아이디 또는 비밀번호가 올바르지 않습니다.')
@@ -888,7 +891,7 @@ def main():
     with st.sidebar:
         st.markdown(f'## 📈 자산관리')
         st.markdown(f'**{name}** 님 환영합니다')
-        authenticator.logout('로그아웃', 'sidebar')
+        authenticator.logout(location='sidebar')
         st.divider()
 
         # 데이터 로드
@@ -942,4 +945,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
